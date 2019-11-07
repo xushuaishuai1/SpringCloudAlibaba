@@ -57,4 +57,7 @@ dubbo:
 # Dubbo 服务注册中心配置，其中子属性 address 的值 “spring-cloud://localhost”，说明挂载到 Spring Cloud 注册中心
   registry:
     address: spring-cloud://localhost
+#    check: false
+#  consumer:
+#    check: false
 

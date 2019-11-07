@@ -51,7 +51,9 @@ dubbo:
     port: -1
   registry:
     address: spring-cloud://localhost
+#    check: false
   cloud:
+    #服务方，多个逗号隔开
     subscribed-services: baseServer
   #dubbo qs端口冲突配置
   application:
@@ -61,3 +63,5 @@ dubbo:
       accept:
         foreign:
           ip: false
+#  consumer:
+#    check: false

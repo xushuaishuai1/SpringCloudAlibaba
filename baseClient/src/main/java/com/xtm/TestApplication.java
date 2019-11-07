@@ -1,5 +1,6 @@
 package com.xtm;
 import com.alibaba.csp.sentinel.annotation.aspectj.SentinelResourceAspect;
+import org.apache.dubbo.config.ConsumerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -20,4 +21,17 @@ public class TestApplication {
     public SentinelResourceAspect sentinelResourceAspect() {
         return new SentinelResourceAspect();
     }
+
+    /**
+     * dubbo消费者配置不主动监督服务，请测无效
+     *
+     * @return
+     */
+//    @Bean
+//    public ConsumerConfig consumerConfig() {
+//        ConsumerConfig consumerConfig = new ConsumerConfig();
+//        consumerConfig.setCheck(false);
+//        consumerConfig.setTimeout(20000);
+//        return consumerConfig;
+//    }
 }
