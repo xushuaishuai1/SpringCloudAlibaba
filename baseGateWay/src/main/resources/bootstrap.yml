@@ -74,6 +74,10 @@ ribbon:
   eager-load:
     enabled: true
     clients: baseClient, baseServer
+  #请求处理的超时时间
+  ReadTimeout: 60000
+  #请求连接的超时时间
+  ConnectTimeout: 30000
 #spring.cloud.gateway.discovery.locator.lower-case-service-id=true
 #spring.cloud.gateway.discovery.locator.filters=-StripPrefix=1
 
