@@ -27,33 +27,33 @@ spring:
         #spring.cloud.nacos.config.refreshable-dataids=actuator.properties,log.properties
     #网关配置
     gateway:
-      routes:
-        #转发配置demo
-        #我们自定义的路由 ID，保持唯一
-        - id: csdn
-          #目标服务地址
-          uri: https://blog.csdn.net
-          #路由条件，Predicate 接受一个输入参数，返回一个布尔值结果。该接口包含多种默认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）。
-          #上面这段配置的意思是，配置了一个 id 为 baidu 的路由规则，当访问地址 http://localhost:7000/csdn时会自动转发到地址：https://blog.csdn.net
-          predicates:
-            - Path=/csdn
-        #限流配置demo
-        - id: baseClient
-          uri: lb://baseClient
-          predicates:
-            - Path=/baseClient/**
-          filters:
-            - name: RequestRateLimiter
-              args:
-                #令牌桶填充效率1
-                redis-rate-limiter.replenishRate: 1
-                #令牌桶表示一秒钟最多5个请求
-                redis-rate-limiter.burstCapacity: 2
-                key-resolver: '#{@ipKeyResolver}'
       #是否与服务注册于发现组件进行结合，通过 serviceId 转发到具体的服务实例。默认为 false，设为 true 便开启通过服务中心的自动根据 serviceId 创建路由的功能。
       discovery:
         locator:
           enabled: true
+      routes:
+        #转发配置demo
+        #我们自定义的路由 ID，保持唯一
+      - id: csdn
+        #目标服务地址
+        uri: https://blog.csdn.net
+        #路由条件，Predicate 接受一个输入参数，返回一个布尔值结果。该接口包含多种默认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）。
+        #上面这段配置的意思是，配置了一个 id 为 baidu 的路由规则，当访问地址 http://localhost:7000/csdn时会自动转发到地址：https://blog.csdn.net
+        predicates:
+        - Path=/csdn
+        #限流配置demo
+      - id: baseClient
+        uri: lb://baseClient
+        predicates:
+        - Path=/baseClient/**
+        filters:
+        - name: RequestRateLimiter
+          args:
+            #令牌桶填充效率1
+            redis-rate-limiter.replenishRate: 1
+            #令牌桶表示一秒钟最多5个请求
+            redis-rate-limiter.burstCapacity: 2
+            key-resolver: '#{@ipKeyResolver}'
 logging:
   level:
     org.springframework.cloud.gateway: debug
