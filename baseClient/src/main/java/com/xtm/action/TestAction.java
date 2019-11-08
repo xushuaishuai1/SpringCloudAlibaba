@@ -33,6 +33,12 @@ public class TestAction {
 
     @GetMapping("/getProperties")
     public String getProperties() {
+        try{
+            //测试网关熔断
+            Thread.sleep(1000000);
+        }catch (Exception e){
+
+        }
         return title;
     }
 
