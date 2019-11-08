@@ -54,6 +54,20 @@ spring:
             #令牌桶表示一秒钟最多5个请求
             redis-rate-limiter.burstCapacity: 2
             key-resolver: '#{@ipKeyResolver}'
+      #路由降级处理
+      default-filters:
+        - name: Hystrix
+          args:
+            name: default
+            fallbackUri: 'forward:/defaultFallback'
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 2000
 logging:
   level:
     org.springframework.cloud.gateway: debug
