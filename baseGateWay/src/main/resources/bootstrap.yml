@@ -69,6 +69,11 @@ hystrix:
 logging:
   level:
     org.springframework.cloud.gateway: debug
+#feign饿加载，解决第一次调用失败问题
+ribbon:
+  eager-load:
+    enabled: true
+    clients: baseClient, baseServer
 #spring.cloud.gateway.discovery.locator.lower-case-service-id=true
 #spring.cloud.gateway.discovery.locator.filters=-StripPrefix=1
 
