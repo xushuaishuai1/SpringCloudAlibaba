@@ -2,8 +2,9 @@ server:
   port: 9200
 spring:
   redis:
-    host: 133.165.101.1
-    port: 6379
+    host: localhost
+    port: 6380
+    password: lanware
   application:
     name: baseGateWay
   cloud:
